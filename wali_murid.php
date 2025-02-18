@@ -40,6 +40,10 @@ $result = mysqli_query($koneksi, $query);
            </form>
            <a href="tambah_wali.php" class="btn btn-success">Tambah Wali Murid</a>
        </div>
+       <?php if (isset($_GET['pesan'])) : ?>
+    <div class="alert alert-success"><?php echo htmlspecialchars($_GET['pesan']); ?></div>
+<?php endif; ?>
+
        <table class="table table-bordered">
            <thead class="table-dark">
                <tr>

@@ -82,7 +82,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['nama_kelas'])) {
             </div>
 
             <div class="mb-3">
-                <a href="daftar_kelas.php" class="btn btn-secondary">Kembali</a>
+                <!-- Mengarahkan kembali ke kelas.php -->
+                <a href="kelas.php" class="btn btn-secondary">Kembali</a>
                 <button type="submit" class="btn btn-primary">Simpan</button>
             </div>
         </form>

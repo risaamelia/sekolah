@@ -32,6 +32,12 @@ $result = mysqli_query($koneksi, $query);
 <body>
    <div class="container mt-4">
        <h2 class="mb-3">Data Kelas</h2>
+
+       <!-- Menampilkan pesan notifikasi setelah menghapus kelas -->
+       <?php if (isset($_GET['pesan'])) : ?>
+           <div class="alert alert-success"><?php echo htmlspecialchars($_GET['pesan']); ?></div>
+       <?php endif; ?>
+
        <div class="d-flex justify-content-between mb-3">
            <a href="index.php" class="btn btn-primary">Kembali ke Data Siswa</a>
            <form method="GET" class="d-flex">
@@ -40,6 +46,7 @@ $result = mysqli_query($koneksi, $query);
            </form>
            <a href="tambah_kelas.php" class="btn btn-success">Tambah Kelas</a>
        </div>
+
        <table class="table table-bordered">
            <thead class="table-dark">
                <tr>
@@ -52,15 +59,17 @@ $result = mysqli_query($koneksi, $query);
                <?php while ($row = mysqli_fetch_assoc($result)) : ?>
                <tr>
                    <td><?php echo $row['id_kelas']; ?></td>
-                   <td><?php echo $row['nama_kelas']; ?></td>
+                   <td><?php echo htmlspecialchars($row['nama_kelas']); ?></td>
                    <td>
                        <a href="edit_kelas.php?id=<?php echo $row['id_kelas']; ?>" class="btn btn-warning btn-sm">Edit</a>
-                       <a href="hapus_kelas.php?id=<?php echo $row['id_kelas']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus?')">Hapus</a>
+                       <a href="hapus_kelas.php?id=<?php echo $row['id_kelas']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus kelas ini?')">Hapus</a>
                    </td>
                </tr>
                <?php endwhile; ?>
            </tbody>
        </table>
+
+       <!-- Pagination -->
        <nav>
            <ul class="pagination">
                <?php for ($i = 1; $i <= $total_pages; $i++) : ?>
@@ -71,6 +80,7 @@ $result = mysqli_query($koneksi, $query);
            </ul>
        </nav>
    </div>
+
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
